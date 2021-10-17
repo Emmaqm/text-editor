@@ -13,7 +13,6 @@ enum _retorno{
 
 typedef enum _retorno TipoRetorno;
 
-TipoRetorno ImprimirTexto(Texto a);
 
 TipoRetorno CrearTexto(Texto &a);
 
@@ -25,20 +24,19 @@ TipoRetorno BorrarLinea(Texto &a, Posicion posicion);
 
 TipoRetorno BorrarTodo(Texto &a);
 
+TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
+
+TipoRetorno ImprimirTexto(Texto a);
+
+TipoRetorno ComprimirTexto(Texto &a);
+
 TipoRetorno InsertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabra);
 
 TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
 
-TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
-
 TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
 
-TipoRetorno ComprimirTexto(Texto &a);
-
-/*
 TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
-
-*/
 
 
 #endif // OBLIG_H

@@ -197,7 +197,7 @@ int borrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra)
     }
 }
 
-int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar)
+int borrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena palabraABorrar)
 {
     Texto aux = a;
 
@@ -230,6 +230,10 @@ int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena pala
                                 aux->palabras = antP;
                                 auxP = antP;
                             }
+                            else
+                            {
+                                auxP = auxP->sig;
+                            }
                         }
                         else
                         {
@@ -237,12 +241,17 @@ int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena pala
                             {
                                 antP->sig = auxP->sig;
                                 delete auxP;
-                                auxP = antP;
+                                auxP = antP->sig;
+                            }
+                            else
+                            {
+                                antP = auxP;
+                                auxP = auxP->sig;
                             }
                         }
-                        antP = auxP;
-                        auxP = auxP->sig;
                     }
+
+                    return 1;
                 }
                 aux = aux->sig;
                 countL--;
@@ -253,66 +262,35 @@ int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena pala
             return 0;
         }
     }
-    return 1;
 }
 
-int borrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar)
-{
-    Texto aux = a;
-
-    int largoL = largoTexto(a);
-    int countL = largoL;
-
-    if (a == NULL)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-        while (aux != NULL)
-        {
-            borrarOcurrenciasPalabraEnLinea(a, countL, palabraABorrar);
-            aux = aux->sig;
-            countL--;
-        }
-    }
-}
-
-void comprimirTexto(Texto &a)
+int imprimirLinea(Texto a, Posicion posicionLinea)
 {
     Texto aux = InvertirTexto(a);
-    a = crearTexto();
+    int countT = largoTexto(a);
+    int countL = 1;
 
-    int countLI = 0; // Linea a Insertar
-    int countPI = 0; // Palabra a Insertar
+    if ((posicionLinea <= countT) && (posicionLinea >= 1))
+    { 
 
-    while (aux != NULL)
-    {
-
-        Palabra pal = aux->palabras;
-
-        while (pal != NULL)
+        while (aux != NULL) 
         {
-            if (countLI == 0)
+            if (countL == posicionLinea)
             {
-                insertarLinea(a);
-                countLI++;
+                printf("%d: ", countL);
+                while (aux->palabras != NULL)
+                {                    
+                    printf("%s ", aux->palabras->palabra);
+                    aux->palabras = aux->palabras->sig;
+                }
+
+                return 1;
             }
 
-            countPI++;
-
-            if (countPI - 1 == MAX_CANT_PALABRAS_X_LINEA)
-            {
-                insertarLinea(a);
-                countLI++;
-                countPI = 1;
-            }
-
-            insertarPalabra(a, countLI, countPI, pal->palabra);
-
-            pal = pal->sig;
+            countL++;
+            aux = aux->sig;
         }
-        aux = aux->sig;
+    }else{
+        return 0;
     }
 }

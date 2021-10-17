@@ -6,18 +6,6 @@
 int main(){
     Texto t;
     TipoRetorno tr = CrearTexto(t); // un texto vacio
-    //-------------------------
-
-
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
-    tr = InsertarLinea(t);
 
     char a[] = "Hola";
     char b[] = "Como";
@@ -25,33 +13,47 @@ int main(){
     char d[] = "Bien";
     char e[] = "Emma";
     char f[] = "Vos";
-    
-    //printf("%s", t->palabras->palabra);
+
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
+    tr = InsertarLinea(t);
 
     tr = InsertarPalabra(t, 1, 1, a);
-    tr = InsertarPalabra(t, 1, 2, b);
-    tr = InsertarPalabra(t, 1, 1, a);
-    tr = InsertarPalabra(t, 1, 1, a);
+    tr = InsertarPalabra(t, 1, 2, a);
+    tr = InsertarPalabra(t, 1, 3, a);
 
-    tr = InsertarPalabra(t, 3, 1, f);
-    tr = InsertarPalabra(t, 3, 2, f);
+    tr = InsertarPalabra(t, 2, 1, b);
 
-    tr = InsertarPalabra(t, 5, 1, f);
-    tr = InsertarPalabra(t, 5, 2, c);
-    tr = InsertarPalabra(t, 5, 3, f);
-    tr = InsertarPalabra(t, 5, 4, e);
-    tr = InsertarPalabra(t, 5, 5, f);
+    tr = InsertarPalabra(t, 4, 1, b);
+    tr = InsertarPalabra(t, 4, 2, a);
+    tr = InsertarPalabra(t, 4, 3, d);
+
+    tr = InsertarPalabra(t, 6, 1, b);
+    tr = InsertarPalabra(t, 6, 2, b);
+    tr = InsertarPalabra(t, 6, 3, b);
+
+
+    tr = InsertarPalabra(t, 2, 1, a);
+
 
     tr = InsertarPalabra(t, 7, 1, d);
-    tr = InsertarPalabra(t, 8, 1, f);
+    tr = InsertarPalabra(t, 7, 1, a);
 
-    tr = InsertarPalabra(t, 8, 1, e);
+    tr = InsertarPalabra(t, 1, 1, a);
+    tr = InsertarPalabra(t, 1, 1, d);
 
-    //tr = ComprimirTexto(t);
-
-    tr = ImprimirTexto(t);
-
+    tr = InsertarPalabra(t, 9, 1, a);
+    tr = InsertarPalabra(t, 9, 1, b);
+    tr = InsertarPalabra(t, 9, 1, b);
+    tr = InsertarPalabra(t, 9, 1, b);
     
+    tr = ImprimirTexto(t);
 
     return 0;
 }

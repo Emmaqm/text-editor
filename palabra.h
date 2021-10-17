@@ -22,10 +22,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
 
 int borrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra);
 
-int borrarOcurrenciasPalabraEnLinea(Texto a,Posicion posicionLinea, Cadena palabraABorrar);
+int borrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena palabraABorrar);
 
-int borrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
-
-void comprimirTexto(Texto &a);
+int imprimirLinea(Texto a, Posicion posicionLinea);
 
 #endif // PALABRA_H
