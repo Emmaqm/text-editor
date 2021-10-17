@@ -1,6 +1,5 @@
 #include "oblig.h"
 #include "linea.h"
-
 #include <stdio.h>
 
 int main(){
@@ -8,6 +7,7 @@ int main(){
     TipoRetorno tr = CrearTexto(t); // un texto vacio
 
     char a[] = "Hola";
+    char ax[] = "hola";
     char b[] = "Como";
     char c[] = "Estas";
     char d[] = "Bien";
@@ -52,6 +52,9 @@ int main(){
     tr = InsertarPalabra(t, 9, 1, b);
     tr = InsertarPalabra(t, 9, 1, b);
     tr = InsertarPalabra(t, 9, 1, b);
+
+
+    tr = BorrarOcurrenciasPalabraEnLinea(t, 4, a);
     
     tr = ImprimirTexto(t);
 

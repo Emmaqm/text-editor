@@ -78,7 +78,7 @@ TipoRetorno InsertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionP
     }
 }
 
-TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra)
+TipoRetorno BorrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra)
 {
     int response = borrarPalabra(a, posicionLinea, posicionPalabra);
 
