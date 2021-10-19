@@ -59,7 +59,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
     bool inserted = false;
 
     Cadena c;
-    c = (Cadena) malloc(25);
+    c = (Cadena) malloc(sizeof(*palabra));
+    
     strncpy(c, palabra, (strlen(palabra) + 1));
 
     if ((posicionLinea <= countL) && (posicionLinea >= 1) && (posicionPalabra >= 1) && (posicionPalabra <= largoP + 1))
@@ -77,7 +78,6 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                 {
                     auxP = new str_pal;
                     auxP->palabra = c;
-                    //strcpy(auxP->palabra, palabra);
                     auxP->sig = NULL;
                     aux->palabras = auxP;
 
@@ -93,7 +93,6 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                             {
                                 antP = new str_pal;
                                 antP->palabra = c;
-                                //strcpy(antP->palabra, palabra);
                                 antP->sig = auxP;
                                 aux->palabras = antP;
 
@@ -103,7 +102,6 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                             {
                                 antP->sig = new str_pal;
                                 antP->sig->palabra = c;
-                                //strcpy(antP->sig->palabra, palabra);
                                 antP->sig->sig = auxP;
 
                                 inserted = true;
@@ -113,7 +111,6 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                         {
                             auxP->sig = new str_pal;
                             auxP->sig->palabra = c;
-                            //strcpy(auxP->sig->palabra, palabra);
                             auxP->sig->sig = NULL;
 
                             inserted = true;
