@@ -3,6 +3,8 @@
 
 #include "palabra.h"
 
+#define MAX_CANT_PALABRAS_X_LINEA 3
+
 struct str_linea{
     Palabra palabras;
     str_linea * sig;

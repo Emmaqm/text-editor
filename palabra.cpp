@@ -1,6 +1,7 @@
 #include "oblig.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 Palabra crearPalabrasVacia()
 {
@@ -50,11 +51,16 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
     Texto aux = a;
     Texto ant = a;
 
+
     int countL = largoTexto(a);
     int largoL = countL;
     int countP = 1;
     int largoP = largoLinea(a, posicionLinea);
     bool inserted = false;
+
+    Cadena c;
+    c = (Cadena) malloc(25);
+    strncpy(c, palabra, (strlen(palabra) + 1));
 
     if ((posicionLinea <= countL) && (posicionLinea >= 1) && (posicionPalabra >= 1) && (posicionPalabra <= largoP + 1))
     {
@@ -70,7 +76,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                 if (auxP == NULL)
                 {
                     auxP = new str_pal;
-                    auxP->palabra = palabra;
+                    auxP->palabra = c;
+                    //strcpy(auxP->palabra, palabra);
                     auxP->sig = NULL;
                     aux->palabras = auxP;
 
@@ -85,7 +92,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                             if (antP == auxP)
                             {
                                 antP = new str_pal;
-                                antP->palabra = palabra;
+                                antP->palabra = c;
+                                //strcpy(antP->palabra, palabra);
                                 antP->sig = auxP;
                                 aux->palabras = antP;
 
@@ -94,7 +102,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                             else
                             {
                                 antP->sig = new str_pal;
-                                antP->sig->palabra = palabra;
+                                antP->sig->palabra = c;
+                                //strcpy(antP->sig->palabra, palabra);
                                 antP->sig->sig = auxP;
 
                                 inserted = true;
@@ -103,7 +112,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                         else if (auxP->sig == NULL && inserted == false)
                         {
                             auxP->sig = new str_pal;
-                            auxP->sig->palabra = palabra;
+                            auxP->sig->palabra = c;
+                            //strcpy(auxP->sig->palabra, palabra);
                             auxP->sig->sig = NULL;
 
                             inserted = true;
@@ -133,6 +143,8 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
             aux = aux->sig;
             countL--;
         }
+
+        return 1;
     }
     else
     {
@@ -140,7 +152,7 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
     }
 }
 
-int borrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra)
+int borrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra)
 {
     Texto aux = a;
     Texto ant = a;
@@ -197,7 +209,7 @@ int borrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra)
     }
 }
 
-int borrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena palabraABorrar)
+int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar)
 {
     Texto aux = a;
 
@@ -223,7 +235,7 @@ int borrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena pal
                     {
                         if (antP == auxP)
                         {
-                            if (auxP->palabra == palabraABorrar)
+                            if (strcmp(auxP->palabra, palabraABorrar) == 0)
                             {
                                 antP = auxP->sig;
                                 delete auxP;
@@ -237,7 +249,7 @@ int borrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena pal
                         }
                         else
                         {
-                            if (auxP->palabra == palabraABorrar)
+                            if (strcmp(auxP->palabra, palabraABorrar) == 0)
                             {
                                 antP->sig = auxP->sig;
                                 delete auxP;

@@ -1,4 +1,4 @@
-#include "oblig.h"
+#include "linea.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -14,7 +14,7 @@ Texto InvertirTexto(Texto a)
 
     while (a != NULL)
     {
-        aux = new str_linea;
+        aux = new struct str_linea;
         aux->palabras = a->palabras;
         aux->sig = aux2;
         aux2 = aux;
@@ -39,7 +39,7 @@ int largoTexto(Texto a)
 
 void insertarLinea(Texto &a)
 {
-    Texto aux = new str_linea;
+    Texto aux = new struct str_linea;
     aux->palabras = crearPalabrasVacia();
     aux->sig = a;
     a = aux;
@@ -67,7 +67,7 @@ int insertarLineaEnPosicion(Texto &a, Posicion posicion)
         {
             if (posicion == count)
             {
-                Texto x = new str_linea;
+                Texto x = new struct str_linea;
                 x->palabras = crearPalabrasVacia();
                 x->sig = aux->sig;
                 aux->sig = x;
@@ -168,9 +168,13 @@ void imprimirTexto(Texto a)
     int largo = largoTexto(a);
     int count = 0;
 
+    if(largo == 0){
+        printf("Texto vacio");
+    }
+
     while (count <= largo)
     {
-        int x = ImprimirLinea(a, count);
+        int x = imprimirLinea(a, count);
         count++;
         printf("\n");
     }

@@ -1,10 +1,5 @@
 #include "oblig.h"
-
-TipoRetorno CrearTexto(Texto &a)
-{
-    a = crearTexto();
-    return OK;
-}
+#include <stdio.h>
 
 TipoRetorno InsertarLinea(Texto &a)
 {
@@ -46,7 +41,7 @@ TipoRetorno BorrarTodo(Texto &a)
     return OK;
 }
 
-TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto &a, Cadena palabraABorrar)
+TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar)
 {
     borrarOcurrenciasPalabraEnTexto(a, palabraABorrar);
     return OK;
@@ -78,7 +73,7 @@ TipoRetorno InsertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionP
     }
 }
 
-TipoRetorno BorrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra)
+TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra)
 {
     int response = borrarPalabra(a, posicionLinea, posicionPalabra);
 
@@ -92,7 +87,7 @@ TipoRetorno BorrarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPal
     }
 }
 
-TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto &a, Posicion posicionLinea, Cadena palabraABorrar)
+TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar)
 {
     int response = borrarOcurrenciasPalabraEnLinea(a, posicionLinea, palabraABorrar);
 
@@ -117,5 +112,14 @@ TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea)
     else
     {
         return ERROR;
+    }
+}
+
+void comprobacion(TipoRetorno tr){
+    if (tr == OK){
+        printf(" OK \n");           
+    }
+    else {
+        printf(" ERROR \n");
     }
 }
