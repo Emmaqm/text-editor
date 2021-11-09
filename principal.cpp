@@ -1,7 +1,8 @@
-#include "oblig.h"
-#include "linea.h"
+//#include "oblig.h"
+//#include "linea.h"
+#include "diccionario.h"
 #include <stdio.h>
-
+/*
 int main()
 {
     Texto t = crearTexto();
@@ -164,3 +165,26 @@ int main()
 
     return 0;
 }
+*/
+
+int main() {
+    Diccionario d = crearVacio();
+
+    char a1[25] = "aloja";
+    char a2[25] = "Baloncesto";
+    char a3[25] = "Caduco";
+    char a4[25] = "Descremado";
+    char a5[25] = "Aloja";
+
+    agregar(d, a1);
+    agregar(d, a2);
+    agregar(d, a4);
+    agregar(d, a3);
+    agregar(d, a5);
+
+    borrar(d, a3);
+
+    imprimirDiccionario(d);
+}
+
+
