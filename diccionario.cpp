@@ -49,14 +49,14 @@ Cadena raiz(Diccionario a){
 
 //pre: el arbol a no puede ser vacio
 //post: devuelve el subarbol izquierdo del arbol a
-Diccionario subArbIzq(Diccionario a){
+Diccionario subDirIzq(Diccionario a){
     return a->hizq;
 }
 // O(1)
 
 //pre: el arbol a no puede ser vacio
 //post: devuelve el subarbol derecho del arbol a
-Diccionario subArbDer(Diccionario a){
+Diccionario subDirDer(Diccionario a){
     return a->hder;
 }
 // O(1)
@@ -64,17 +64,17 @@ Diccionario subArbDer(Diccionario a){
 //pre: el arbol a no es vacio
 //post: devuelve true si a es hoja.
 bool esHoja(Diccionario a){
-    return isEmpty(subArbIzq(a)) && isEmpty(subArbDer(a));
+    return isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a));
 }
 // O(1)
 
 //pre: a no es vacio.
 //post: devuelve el menor entero del arbol a.
 Cadena minimo(Diccionario a){
-    if (isEmpty(subArbIzq(a))){
+    if (isEmpty(subDirIzq(a))){
         return raiz(a);
     }else{
-        return minimo(subArbIzq(a));
+        return minimo(subDirIzq(a));
     }
 }
 // O(n) si est� desbalanceado
@@ -85,13 +85,13 @@ Cadena minimo(Diccionario a){
 void borrar(Diccionario &a, Cadena c){
     if (!isEmpty(a)){
         if (strcasecmp(raiz(a), c) == 0){
-            if (isEmpty(subArbIzq(a)) && isEmpty(subArbDer(a))){
+            if (isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a))){
                 // el nodo es una hoja
                 delete a;
                 a = crearVacio();
-            }else if (!isEmpty(subArbDer(a))){
+            }else if (!isEmpty(subDirDer(a))){
                 // el nodo tiene subarbol derecho
-                Cadena min_der = minimo(subArbDer(a));
+                Cadena min_der = minimo(subDirDer(a));
                 a->palabra = min_der;
                 borrar(a->hder, min_der);
             }else{
@@ -111,9 +111,24 @@ void borrar(Diccionario &a, Cadena c){
 
 void imprimirDiccionario(Diccionario a){
     if (!isEmpty(a)){
-        imprimirDiccionario(subArbIzq(a));
+        imprimirDiccionario(subDirIzq(a));
         printf("%s ", raiz(a));
-        imprimirDiccionario(subArbDer(a));
+        imprimirDiccionario(subDirDer(a));
+    }
+}
+
+bool existeEnDiccionario(Diccionario a, Cadena c)
+{
+    if (!isEmpty(a)){
+        if (strcasecmp(raiz(a), c) == 0){
+            return true;
+        }else if (strcasecmp(raiz(a), c) < 0){
+            existeEnDiccionario(subDirDer(a), c);
+        }else if (strcasecmp(raiz(a), c) > 0){
+            existeEnDiccionario(subDirIzq(a), c);
+        }
+    }else{
+        return false;
     }
 }
 

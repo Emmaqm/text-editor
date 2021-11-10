@@ -303,3 +303,37 @@ int imprimirLinea(Texto a, Posicion posicionLinea)
         return 0;
     }
 }
+
+int imprimirLineaIncorrecta(Texto a, Diccionario d, Posicion posicionLinea)
+{
+    Texto aux = InvertirTexto(a);
+    int countT = largoTexto(a);
+    int countL = 1;
+
+    if ((posicionLinea <= countT) && (posicionLinea >= 1))
+    { 
+
+        while (aux != NULL) 
+        {
+            if (countL == posicionLinea)
+            {
+                printf("%d: ", countL);
+                while (aux->palabras != NULL)
+                {                    
+                    if(!existeEnDiccionario(d, aux->palabras->palabra)){
+                        printf("%s ", aux->palabras->palabra);
+                    }
+                   
+                    aux->palabras = aux->palabras->sig;
+                }
+
+                return 1;
+            }
+
+            countL++;
+            aux = aux->sig;
+        }
+    }else{
+        return 0;
+    }
+}

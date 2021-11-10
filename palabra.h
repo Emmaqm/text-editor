@@ -1,6 +1,8 @@
 #ifndef PALABRA_H
 #define PALABRA_H
 
+#include "diccionario.h"
+
 typedef char* Cadena;
 
 struct str_pal{
@@ -25,5 +27,7 @@ int borrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
 int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
 
 int imprimirLinea(Texto a, Posicion posicionLinea);
+
+int imprimirLineaIncorrecta(Texto a, Diccionario d, Posicion posicionLinea);
 
 #endif // PALABRA_H

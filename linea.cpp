@@ -168,13 +168,33 @@ void imprimirTexto(Texto a)
     int largo = largoTexto(a);
     int count = 0;
 
-    if(largo == 0){
+    if (largo == 0)
+    {
         printf("Texto vacio");
     }
 
     while (count <= largo)
     {
         int x = imprimirLinea(a, count);
+        count++;
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void imprimirTextoIncorrecto(Texto a, Diccionario d)
+{
+    int largo = largoTexto(a);
+    int count = 0;
+
+    if (largo == 0)
+    {
+        printf("Texto vacio");
+    }
+
+    while (count <= largo)
+    {
+        int x = imprimirLineaIncorrecta(a, d, count);
         count++;
         printf("\n");
     }

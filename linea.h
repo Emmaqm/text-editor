@@ -30,6 +30,8 @@ void borrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
 
 void imprimirTexto(Texto a);
 
+void imprimirTextoIncorrecto(Texto a, Diccionario d);
+
 void comprimirTexto(Texto &a);
 
 
