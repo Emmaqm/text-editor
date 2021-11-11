@@ -1,6 +1,17 @@
 #include "oblig.h"
 #include <stdio.h>
 
+
+void comprobacion(TipoRetorno tr){
+    if (tr == OK){
+        printf(" OK \n");           
+    }
+    else {
+        printf(" ERROR \n");
+    }
+}
+
+
 TipoRetorno InsertarLinea(Texto &a)
 {
     insertarLinea(a);
@@ -115,11 +126,41 @@ TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea)
     }
 }
 
-void comprobacion(TipoRetorno tr){
-    if (tr == OK){
-        printf(" OK \n");           
+TipoRetorno IngresarPalabraDiccionario(Diccionario &a, Cadena c)
+{
+    int response = ingresarPalabraDiccionario(a, c);
+
+    if (response == 1)
+    {
+        return OK;
     }
-    else {
-        printf(" ERROR \n");
+    else
+    {
+        return ERROR;
     }
+}
+
+TipoRetorno BorrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
+
+    int response =  borrarPalabraDiccionario(a, palabraABorrar);
+
+    if (response == 1)
+    {
+        return OK;
+    }
+    else
+    {
+        return ERROR;
+    }
+
+}
+
+TipoRetorno ImprimirDiccionario(Diccionario d) {
+    imprimirDiccionario(d);
+    return OK;
+}
+
+TipoRetorno ImprimirTextoIncorrecto(Texto a, Diccionario d) {
+    imprimirTextoIncorrecto(a, d);
+    return OK;
 }

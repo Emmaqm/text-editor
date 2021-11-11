@@ -1,7 +1,7 @@
 #ifndef OBLIG_H
 #define OBLIG_H
-
 #include "linea.h"
+
 
 typedef char* Cadena;
 
@@ -74,6 +74,14 @@ TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cad
 debe ser menor o igual a la cantidad de lineas totales del texo*/
 //postcondicion Imprime la linea pasada como paramentro junto con sus palabras si es que tiene alguna sino muestra la linea vacia.
 TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
+
+TipoRetorno IngresarPalabraDiccionario(Diccionario &a, Cadena c);
+
+TipoRetorno BorrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar);
+
+TipoRetorno ImprimirDiccionario(Diccionario d);
+
+TipoRetorno ImprimirTextoIncorrecto(Texto a, Diccionario d);
 
 void comprobacion(TipoRetorno tr);
 

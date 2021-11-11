@@ -1,36 +1,14 @@
 #include "diccionario.h"
 #include <stdlib.h>
 #include <strings.h>
+#include <string.h>
 
 
-
-//pre: n/a
-//post: devuelve un arbol vacio.
-Diccionario crearVacio(){
+Diccionario crearDiccionario(){
     return NULL;
 }
-// O(1)
 
-//pre: x no pertenece a a
-//post: agrega x al arbol a
-void agregar(Diccionario &a, Cadena c){
-    if (a == NULL){
-        a = new struct str_nodo;
-        a->palabra = c;
-        a->hizq = NULL;
-        a->hder = NULL;
-    }else if (strcasecmp(a->palabra, c) > 0){
-        agregar(a->hizq, c);
-    }else if (strcasecmp(a->palabra, c) < 0){
-        agregar(a->hder, c);
-    }
-}
-// O(log2 n) en un arbol balanceado
 
-// Predicado
-
-//pre: n/a
-//post: devuelve true si el arbol a es vac�o, false en caso contrario.
 bool isEmpty(Diccionario a){
     if (a == NULL){
         return true;
@@ -38,38 +16,27 @@ bool isEmpty(Diccionario a){
         return false;
     }
 }
-// O(1)
 
-//pre: el arbol a no puede ser vacio
-//post: devuelve el valor que contiene el primer elemento del arbol a
 Cadena raiz(Diccionario a){
     return a->palabra;
 }
-// O(1)
 
-//pre: el arbol a no puede ser vacio
-//post: devuelve el subarbol izquierdo del arbol a
+
 Diccionario subDirIzq(Diccionario a){
     return a->hizq;
 }
-// O(1)
 
-//pre: el arbol a no puede ser vacio
-//post: devuelve el subarbol derecho del arbol a
+
 Diccionario subDirDer(Diccionario a){
     return a->hder;
 }
-// O(1)
 
-//pre: el arbol a no es vacio
-//post: devuelve true si a es hoja.
+
 bool esHoja(Diccionario a){
     return isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a));
 }
-// O(1)
 
-//pre: a no es vacio.
-//post: devuelve el menor entero del arbol a.
+
 Cadena minimo(Diccionario a){
     if (isEmpty(subDirIzq(a))){
         return raiz(a);
@@ -77,35 +44,55 @@ Cadena minimo(Diccionario a){
         return minimo(subDirIzq(a));
     }
 }
-// O(n) si est� desbalanceado
-// O(log2 n) si es un arbol balanceado
 
-//pre: n/a
-//post: borra x del arbol a
-void borrar(Diccionario &a, Cadena c){
+int ingresarPalabraDiccionario(Diccionario &a, Cadena c){
+    if(existeEnDiccionario(a, c) == true)
+    {
+        return 0;
+    }
+
+    Cadena c2;
+    c2 = (Cadena) malloc(sizeof(*c));
+    strncpy(c2, c, (strlen(c) + 1));
+    
+    if (a == NULL){
+        a = new struct str_nodo;
+        a->palabra = c2;
+        a->hizq = NULL;
+        a->hder = NULL;
+        return 1;
+    }else if (strcasecmp(a->palabra, c2) > 0){
+        ingresarPalabraDiccionario(a->hizq, c2);
+        return 1;
+    }else if (strcasecmp(a->palabra, c2) < 0){
+        ingresarPalabraDiccionario(a->hder, c2);
+        return 1;
+    }
+}
+
+
+int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
     if (!isEmpty(a)){
-        if (strcasecmp(raiz(a), c) == 0){
+        if (strcasecmp(raiz(a), palabraABorrar) == 0){
             if (isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a))){
-                // el nodo es una hoja
                 delete a;
-                a = crearVacio();
+                a = crearDiccionario();
             }else if (!isEmpty(subDirDer(a))){
-                // el nodo tiene subarbol derecho
                 Cadena min_der = minimo(subDirDer(a));
                 a->palabra = min_der;
-                borrar(a->hder, min_der);
+                borrarPalabraDiccionario(a->hder, min_der);
             }else{
-                // el nodo no tiene subarbol derecho, pero s� tiene subarbol izquierdo.
                 Diccionario aux = a->hizq;
                 delete a;
                 a = aux;
             }
-        }else if (strcasecmp(raiz(a), c) < 0){
-            borrar(a->hder, c);
-        }else if (strcasecmp(raiz(a), c) > 0){
-            borrar(a->hizq, c);
+        }else if (strcasecmp(raiz(a), palabraABorrar) < 0){
+            borrarPalabraDiccionario(a->hder, palabraABorrar);
+        }else if (strcasecmp(raiz(a), palabraABorrar) > 0){
+            borrarPalabraDiccionario(a->hizq, palabraABorrar);
         }
     }
+    return 0;
 }
 
 

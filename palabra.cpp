@@ -232,7 +232,7 @@ int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena pala
                     {
                         if (antP == auxP)
                         {
-                            if (strcmp(auxP->palabra, palabraABorrar) == 0)
+                            if (strcasecmp(auxP->palabra, palabraABorrar) == 0)
                             {
                                 antP = auxP->sig;
                                 delete auxP;
@@ -246,7 +246,7 @@ int borrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena pala
                         }
                         else
                         {
-                            if (strcmp(auxP->palabra, palabraABorrar) == 0)
+                            if (strcasecmp(auxP->palabra, palabraABorrar) == 0)
                             {
                                 antP->sig = auxP->sig;
                                 delete auxP;

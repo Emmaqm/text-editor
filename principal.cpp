@@ -1,20 +1,22 @@
 #include "oblig.h"
 #include <stdio.h>
-/*
+
 int main()
 {
-    Texto t = crearTexto();
     TipoRetorno tr;
+
+    Texto t = crearTexto();
+    Diccionario d = crearDiccionario();
+
     int opcion = 1;
     char palabra[25];
+    
     Posicion posicionLinea;
     Posicion posicionPalabra;
 
-    tr = InsertarLinea(t);
-
     while (opcion != 0)
     {
-        printf("\n 1) Insertar \n 2) Borrar \n 3) Imprimir \n 4) Comprimir Texto \n 0) Salir \n");
+        printf("\n 1) Insertar \n 2) Borrar \n 3) Imprimir \n 4) Comprimir Texto \n 5) Diccionario \n 0) Salir \n");
         printf("\n Ingrese la opcion deseada: ");
         scanf("%d", &opcion);
 
@@ -23,7 +25,7 @@ int main()
         {
 
         case 1:
-            printf("\n 1) Insertar Linea Vacia al final del documento \n 2) Insertar linea en posicion deseada \n 3) Insertar Palabra \n 0) Salir \n" );
+            printf("\n 1) Insertar Linea Vacia al final del documento \n 2) Insertar linea en posicion deseada \n 3) Insertar Palabra \n 0) Salir \n");
             printf("\n Seleccione que desea ingresar: ");
             scanf("%d", &opcion2);
 
@@ -54,15 +56,14 @@ int main()
 
                 break;
 
-                case 0:
+            case 0:
                 break;
 
-
-                default:
+            default:
                 printf("Opción no válida");
                 break;
             }
-                 
+
             break;
 
         case 2:
@@ -107,20 +108,19 @@ int main()
             case 5:
                 tr = BorrarTodo(t);
                 comprobacion(tr);
-                break;         
-
-                case 0: 
                 break;
 
-                  default:
-                printf("Opción no válida");   
+            case 0:
+                break;
+
+            default:
+                printf("Opción no válida");
             }
-          
-              
+
             break;
 
         case 3:
-            printf("\n 1) Imprimir linea  \n 2) Imprimir texto completo \n 0) Volver \n");
+            printf("\n 1) Imprimir linea  \n 2) Imprimir texto completo \n 3) Imprimir texto incorrecto \n 0) Volver \n");
             printf("\n Seleccione que desea imprimir: ");
             scanf("%d", &opcion2);
             switch (opcion2)
@@ -136,14 +136,16 @@ int main()
                 tr = ImprimirTexto(t);
                 comprobacion(tr);
                 break;
-
+            case 3:
+                printf("Texto: \n");
+                tr = ImprimirTextoIncorrecto(t, d);
+                comprobacion(tr);
+                break;
             case 0:
-            break;
-
-                 default:
+                break;
+            default:
                 printf("Opción no válida");
             }
-                
 
             break;
 
@@ -152,61 +154,43 @@ int main()
             comprobacion(tr);
             break;
 
-        case 0:
-            break;
+        case 5:
+            printf("\n 1) Insertar Palabra en el Diccionario \n 2) Borrar Palabra en el Diccionario \n 3) Imprimir Diccionario alfabeticamente \n 0) Salir \n");
+            printf("\n Ingrese la opcion deseada: ");
+            scanf("%d", &opcion2);
+            switch (opcion2)
+            {
+            case 1:
+                printf("%d", opcion);
+                printf("Ingrese la palabra a insertar: ");
+                scanf("%s", &palabra);
+                tr = IngresarPalabraDiccionario(d, palabra);
+                comprobacion(tr);
+                break;
 
-        default:
-            printf("Opción no válida");
-            break;
+            case 2:
+                printf("Ingrese la palabra a borrar: ");
+                scanf("%s", &palabra);
+                tr = BorrarPalabraDiccionario(d, palabra);
+                comprobacion(tr);
+                break;
+
+            case 3:
+                printf("Diccionario: \n");
+                tr = ImprimirDiccionario(d);
+                comprobacion(tr);
+                break;
+
+            case 0:
+                tr = ImprimirTextoIncorrecto(t, d);
+                comprobacion(tr);
+                break;
+            default:
+                printf("Opción no válida");
+                break;
+            }
         }
     }
 
     return 0;
 }
-*/
-
-int main() {
-    Diccionario dir = crearVacio();
-    Texto t = crearTexto();
-
-    char a1[25] = "aloja";
-    char a2[25] = "Baloncesto";
-    char a3[25] = "Caduco";
-    char a4[25] = "Descremado";
-    char a5[25] = "Aloja";
-
-    agregar(dir, a1);
-
-    borrar(dir, a3);
-
-    //imprimirDiccionario(dir);
-
-    InsertarLinea(t);
-    InsertarLinea(t);
-    InsertarLinea(t);
-
-    char a[30] = "Palabra21";
-    char b[30] = "Palabra22";
-    char c[30] = "Palabra11";
-    char d[30] = "Palabra12";
-    char e[30] = "Palabra13";
-    char f[30] = "Palabra31";
-
-
-    InsertarPalabra(t, 2, 1, a);
-    InsertarPalabra(t, 2, 2, b);
-    InsertarPalabra(t, 1, 1, c);
-    InsertarPalabra(t, 1, 2, d);
-    InsertarPalabra(t, 1, 3, e);
-    InsertarPalabra(t, 3, 1, f);
-
-    ImprimirTexto(t);
-
-    agregar(dir, d);
-    agregar(dir, a);
-    agregar(dir, b);
-
-    imprimirTextoIncorrecto(t, dir);
-}
-
-
