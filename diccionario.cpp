@@ -78,6 +78,7 @@ int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
             if (isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a))){
                 delete a;
                 a = crearDiccionario();
+                return 1;
             }else if (!isEmpty(subDirDer(a))){
                 Cadena min_der = minimo(subDirDer(a));
                 a->palabra = min_der;
@@ -86,6 +87,7 @@ int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
                 Diccionario aux = a->hizq;
                 delete a;
                 a = aux;
+                return 1;
             }
         }else if (strcasecmp(raiz(a), palabraABorrar) < 0){
             borrarPalabraDiccionario(a->hder, palabraABorrar);
