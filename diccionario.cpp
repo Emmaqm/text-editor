@@ -50,22 +50,23 @@ int ingresarPalabraDiccionario(Diccionario &a, Cadena c){
     {
         return 0;
     }
-
-    Cadena c2;
-    c2 = (Cadena) malloc(sizeof(*c));
-    strncpy(c2, c, (strlen(c) + 1));
     
     if (a == NULL){
+        
+        Cadena c2;
+        c2 = (Cadena) malloc((strlen(c) + 1) * sizeof(char));    
+        strcpy(c2, c);
+
         a = new struct str_nodo;
         a->palabra = c2;
         a->hizq = NULL;
         a->hder = NULL;
         return 1;
-    }else if (strcasecmp(a->palabra, c2) > 0){
-        ingresarPalabraDiccionario(a->hizq, c2);
+    }else if (strcasecmp(a->palabra, c) > 0){
+        ingresarPalabraDiccionario(a->hizq, c);
         return 1;
-    }else if (strcasecmp(a->palabra, c2) < 0){
-        ingresarPalabraDiccionario(a->hder, c2);
+    }else if (strcasecmp(a->palabra, c) < 0){
+        ingresarPalabraDiccionario(a->hder, c);
         return 1;
     }
 }

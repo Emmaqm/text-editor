@@ -59,9 +59,9 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
     bool inserted = false;
 
     Cadena c;
-    c = (Cadena) malloc(sizeof(*palabra));
+    c = (Cadena) malloc((strlen(palabra) + 1) * sizeof(char));
     
-    strncpy(c, palabra, (strlen(palabra) + 1));
+    strcpy(c, palabra);
 
     if ((posicionLinea <= countL) && (posicionLinea >= 1) && (posicionPalabra >= 1) && (posicionPalabra <= largoP + 1))
     {

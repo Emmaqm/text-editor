@@ -9,14 +9,14 @@ int main()
     Diccionario d = crearDiccionario();
 
     int opcion = 1;
-    char palabra[25];
+    char palabra[100];
     
     Posicion posicionLinea;
     Posicion posicionPalabra;
 
     while (opcion != 0)
     {
-        printf("\n 1) Insertar \n 2) Borrar \n 3) Imprimir \n 4) Comprimir Texto \n 5) Diccionario \n 0) Salir \n");
+        printf("\n 1) Insertar \n 2) Borrar \n 3) Imprimir \n 4) Comprimir texto \n 5) Diccionario \n 0) Salir \n");
         printf("\n Ingrese la opcion deseada: ");
         scanf("%d", &opcion);
 
@@ -25,7 +25,7 @@ int main()
         {
 
         case 1:
-            printf("\n 1) Insertar Linea Vacia al final del documento \n 2) Insertar linea en posicion deseada \n 3) Insertar Palabra \n 0) Salir \n");
+            printf("\n 1) Insertar linea vacia al final del documento \n 2) Insertar linea en posicion deseada \n 3) Insertar palabra \n 0) Salir \n");
             printf("\n Seleccione que desea ingresar: ");
             scanf("%d", &opcion2);
 
@@ -67,23 +67,23 @@ int main()
             break;
 
         case 2:
-            printf("\n 1) Borrar palabra \n 2) Borrar linea \n 3) Borrar ocurrencias de palabra en linea \n 4) Borrar ocurrencias de Palabra en Texto \n 5) Borrar todo el texto \n 0) Volver \n");
+            printf("\n 1) Borrar palabra \n 2) Borrar linea \n 3) Borrar ocurrencias de palabra en linea \n 4) Borrar ocurrencias de palabra en Texto \n 5) Borrar todo el texto \n 0) Volver \n");
             printf("\n Seleccione que desea borrar: ");
             scanf("%i", &opcion2);
 
             switch (opcion2)
             {
             case 1:
-                printf("\n ingrese la posicion de la linea: ");
+                printf("\n Ingrese la posicion de la linea: ");
                 scanf("%d", &posicionLinea);
-                printf("\n ingrese la posicion de la palabra: ");
+                printf("\n Ingrese la posicion de la palabra: ");
                 scanf("%d", &posicionPalabra);
                 tr = BorrarPalabra(t, posicionLinea, posicionPalabra);
                 comprobacion(tr);
                 break;
 
             case 2:
-                printf("ingrese la linea que quiere borrar: ");
+                printf("Ingrese la linea que quiere borrar: ");
                 scanf("%d", &posicionLinea);
                 tr = BorrarLinea(t, posicionLinea);
                 comprobacion(tr);
@@ -92,7 +92,7 @@ int main()
             case 3:
                 printf("Ingrese la linea donde se encuentra la palabra a borrar: ");
                 scanf("%d", &posicionLinea);
-                printf("ingrese la palabra a borrar en la linea: ");
+                printf("Ingrese la palabra a borrar en la linea: ");
                 scanf("%s", &palabra);
                 tr = BorrarOcurrenciasPalabraEnLinea(t, posicionLinea, palabra);
                 comprobacion(tr);
@@ -155,21 +155,20 @@ int main()
             break;
 
         case 5:
-            printf("\n 1) Insertar Palabra en el Diccionario \n 2) Borrar Palabra en el Diccionario \n 3) Imprimir Diccionario alfabeticamente \n 0) Salir \n");
+            printf("\n 1) Insertar palabra en el diccionario \n 2) Borrar palabra en el diccionario \n 3) Imprimir diccionario alfabeticamente \n 0) Salir \n");
             printf("\n Ingrese la opcion deseada: ");
             scanf("%d", &opcion2);
             switch (opcion2)
             {
             case 1:
-                printf("%d", opcion);
-                printf("Ingrese la palabra a insertar: ");
+                printf("\n Ingrese la palabra a insertar: ");
                 scanf("%s", &palabra);
                 tr = IngresarPalabraDiccionario(d, palabra);
                 comprobacion(tr);
                 break;
 
             case 2:
-                printf("Ingrese la palabra a borrar: ");
+                printf("\n Ingrese la palabra a borrar: ");
                 scanf("%s", &palabra);
                 tr = BorrarPalabraDiccionario(d, palabra);
                 comprobacion(tr);
