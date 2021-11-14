@@ -60,6 +60,7 @@ int insertarLineaEnPosicion(Texto &a, Posicion posicion)
     else if (posicion == (largo + 1))
     {
         insertarLinea(a);
+        return 1;
     }
     else
     {
@@ -206,8 +207,8 @@ void comprimirTexto(Texto &a)
     Texto aux = InvertirTexto(a);
     a = crearTexto();
 
-    int countLI = 0; // Linea a Insertar
-    int countPI = 0; // Palabra a Insertar
+    int countLI = 0;
+    int countPI = 0;
 
     while (aux != NULL)
     {

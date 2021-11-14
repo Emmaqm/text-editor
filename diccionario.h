@@ -13,44 +13,43 @@ typedef struct str_nodo * Diccionario;
 
 // Constructora
 
-// Post-condicion: Crea un diccionario vacio
+// Post-condición: Crea un diccionario vacío
 Diccionario crearDiccionario();
 
-// Pre-condicion: La palabra ingresada por parametro no debe de existir dentro del Diccionario
-// Post-condicion: Agrega la palabra ingresada por parametro al Diccionario
+// Pre-condición: La palabra ingresada por parámetro no debe de existir dentro del Diccionario.
+// Post-condición: Agrega la palabra ingresada por parámetro al Diccionario.
 int ingresarPalabraDiccionario(Diccionario &a, Cadena c);
 
 // Predicado
 
-// Post-condicion: Si el diccionario está vacio, devuelve true. De lo contrario, devuelve false.
+// Post-condición: Si el diccionario está vacío, devuelve true. De lo contrario, devuelve false.
 bool isEmpty(Diccionario a);
 
-// Pre-condicion: El diccionario no puede estar vacio.
-// Post-condicion: Devuelve el valor que contiene el primer elemento del arbol;
+// Pre-condición: El diccionario no puede estar vacío.
+// Post-condición: Devuelve el valor que contiene el primer elemento del arbol.
 Cadena raiz(Diccionario a);
 
-// Pre-condicion: El diccionario no puede estar vacio.
-// Post-condicion: Devuelve el valor que contiene el subArbol izquierdo del Diccionario
+// Pre-condición: El diccionario no puede estar vacío.
+// Post-condición: Devuelve el valor que contiene el subArbol izquierdo del Diccionario.
 Diccionario subDirIzq(Diccionario a);
 
-// Pre-condicion: El diccionario no puede estar vacio.
-// Post-condicion: Devuelve el valor que contiene el subArbol derecho del Diccionario
+// Pre-condición: El diccionario no puede estar vacío.
+// Post-condición: Devuelve el valor que contiene el subArbol derecho del Diccionario.
 Diccionario subDirDer(Diccionario a);
 
-// Pre-condicion: El diccionario no puede estar vacio.
-// Post-condicion: Si es Hoja(una palabra), devuelve true. De lo contrario, devuelve false.
+// Pre-condición: El diccionario no puede estar vacío.
+// Post-condición: Si es Hoja (una palabra), devuelve true. De lo contrario, devuelve false.
 bool esHoja(Diccionario a);
 
-
-// Pre-condicion: El diccionario no puede estar vacio y la palabra debe existir dentro del diccionario. 
-// Post-condicion: Borra del Dicccionario, la palabra ingresada por parametro.
+// Pre-condición: El diccionario no puede estar vacío y la palabra debe existir dentro del diccionario. 
+// Post-condición: Borra del Dicccionario, la palabra ingresada por parámetro.
 int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar);
 
-// Pos-condicion: Imprime todas las palabras del dicionario, en orden alfabetico.
+// Pos-condición: Imprime todas las palabras del dicionario, en orden alfabético.
 void imprimirDiccionario(Diccionario a);
 
-// Pre-condicion: El diccionario no puede estar vacio.
-// Post-condicion: Si la palabra ingresada por parametro, devuelve true. De lo contrario, devuelve false.
+// Pre-condición: El diccionario no puede estar vacío.
+// Post-condición: Si la palabra ingresada por parámetro existe en el texto, devuelve true. De lo contrario, devuelve false.
 bool existeEnDiccionario(Diccionario a, Cadena c);
 
 #endif

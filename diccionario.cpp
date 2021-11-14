@@ -77,16 +77,16 @@ int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
         if (strcasecmp(raiz(a), palabraABorrar) == 0){
             if (isEmpty(subDirIzq(a)) && isEmpty(subDirDer(a))){
                 delete a;
-                a = crearDiccionario();
-                return 1;
+                a = crearDiccionario();        
+                return 1;        
             }else if (!isEmpty(subDirDer(a))){
-                Cadena min_der = minimo(subDirDer(a));
-                a->palabra = min_der;
-                borrarPalabraDiccionario(a->hder, min_der);
+                Cadena mDer = minimo(subDirDer(a));
+                a->palabra = mDer;
+                borrarPalabraDiccionario(a->hder, mDer);
             }else{
-                Diccionario aux = a->hizq;
+                Diccionario dAux = a->hizq;
                 delete a;
-                a = aux;
+                a = dAux;
                 return 1;
             }
         }else if (strcasecmp(raiz(a), palabraABorrar) < 0){
@@ -94,8 +94,9 @@ int borrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar){
         }else if (strcasecmp(raiz(a), palabraABorrar) > 0){
             borrarPalabraDiccionario(a->hizq, palabraABorrar);
         }
-    }
-    return 0;
+    }else{
+        return 0;
+    }   
 }
 
 

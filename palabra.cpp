@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 Palabra crearPalabrasVacia()
 {
@@ -66,7 +67,7 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
     if ((posicionLinea <= countL) && (posicionLinea >= 1) && (posicionPalabra >= 1) && (posicionPalabra <= largoP + 1))
     {
 
-        while (aux != NULL) // Recorrer lineas
+        while (aux != NULL) 
         {
             if (countL == posicionLinea)
             {
@@ -85,7 +86,7 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                 }
                 else
                 {
-                    while (auxP != NULL) // Recorrer palabras
+                    while (auxP != NULL) 
                     {
                         if (countP == posicionPalabra && inserted == false)
                         {
@@ -120,7 +121,7 @@ int insertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, 
                         {
 
                             if (aux == a)
-                            { // Si esta en la ultima linea (Primer nodo)
+                            { 
                                 insertarLinea(a);
                             }
 
@@ -160,28 +161,28 @@ int borrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra)
     int cantidadP = largoLinea(a, posicionLinea);
 
     if ((posicionLinea <= countL) && (posicionLinea >= 1) && (posicionPalabra >= 1) && (posicionPalabra <= cantidadP))
-    { // Si la posicion de la linea y de la palabra existen:
+    { 
 
-        while (aux != NULL) //Recorro el texto linea por linea
+        while (aux != NULL)
         {
-            if (countL == posicionLinea) //Si el contador llego a la posicion en linea
+            if (countL == posicionLinea) 
             {
-                //Creo una linea auxiliar y anterior
-                Palabra auxP = aux->palabras; //AuxL apunta al primer nodo de aux (la linea original en la posicionLinea)
+                
+                Palabra auxP = aux->palabras; 
                 Palabra antP = auxP;
-                // hasta aca OK
+                
 
-                while (auxP != NULL) // Recorro la linea palabra por palabraa
+                while (auxP != NULL) 
                 {
-                    if (countP == posicionPalabra) // Si el contador llegó a la posicionPalabra
+                    if (countP == posicionPalabra)
                     {
                         if (antP == auxP)
-                        { //Si antp y auxp estan con el mismo nodo
+                        {
 
                             auxP = auxP->sig;
                             delete antP;
                             aux->palabras = auxP;
-                            return 1; //Done
+                            return 1;
                         }
                         else
                         {
@@ -196,7 +197,7 @@ int borrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra)
                 }
             }
 
-            aux = aux->sig; //Avanzo de linea
+            aux = aux->sig; 
             countL--;
         }
     }

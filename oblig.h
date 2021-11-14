@@ -11,77 +11,83 @@ enum _retorno{
 
 typedef enum _retorno TipoRetorno;
 
- //postcondicion Crea una linea nueva al final del texto
+
+// Post-condición: Crea una nueva linea al final del texto.
 TipoRetorno InsertarLinea(Texto &a);
 
-/*precondicion La linea pasada por parametro debe ser mayor o igual a 1 y debe ser menor o igual a la cantidad de lineas
-del texto +1*/   
-/*postcondicion Inserta una linea vacia en el texto, si la linea se fuera a insertar entre medio de 2 lineas mueve
-las demas lineas un lugar hacia abajo
-*/
+/* Pre-condición: La posición de línea pasada por parámetro debe ser mayor o igual a 1, y debe ser menor
+    o igual a la cantidad de líneas del texto +1. */   
+/* Post-condición: Inserta una línea vacía en el texto, si la línea se fuera a insertar entre medio de 2 líneas,
+    mueve las demás líneas un lugar hacia adelante.*/
 TipoRetorno InsertarLineaEnPosicion(Texto &a, Posicion posicion);
 
-/*precondicion El texto deberá contener al menos 1 linea vacia, la posicion de la linea pasada por parametro
-debe ser menor o igual a la cantidad de lineas totales del texto y debe ser mayor o igual a 1
-*/
-/*postcondicion Borra la línea en la posición indicada y mueve todas las líneas que se encuentran a partir de la posición
-indicada, una posición más hacia arriba*/
+/* Pre-condición: El texto debe contener al menos 1 línea vacía. La posición de la línea pasada por parámetro
+    debe ser menor o igual a la cantidad de líneas totales del texto, y debe ser mayor o igual a 1. */
+/* Post-condición: Borra la línea en la posición indicada por parámetro y mueve todas las líneas que eventualmente se 
+    encuentren en posiciones posteriores a la eliminada, una posición más hacia adelante. */
 TipoRetorno BorrarLinea(Texto &a, Posicion posicion);
 
-//postcondicion Borra todo el texto 
+// Post-condición: Borra todo el contenido del texto.
 TipoRetorno BorrarTodo(Texto &a);
 
-//precondicion El texto deberá contener al menos 1 linea con 1 palabra, la palabra debe estar en el texto.
-/*postcondicion Borra la palabra que se ha enviado por parametro si existe en el texto, desplazando hacia adelante en cada línea
-las palabras que eventualmente se encuentren en posiciones posteriores a la eliminada.
-*/
+// Pre-condición: El texto debe contener al menos 1 línea con 1 palabra. La palabra debe existir en el texto.
+/* Post-condición: Borra la palabra pasada por parámetro, desplazando hacia adelante en cada línea 
+    las palabras que eventualmente se encuentren en posiciones posteriores a la eliminada. */
 TipoRetorno BorrarOcurrenciasPalabraEnTexto(Texto a, Cadena palabraABorrar);
 
-/*postcondicion Imprime el texto que se envia por parametro, cuando el texto no tiene líneas muestra el mensaje
-"Texto vacio"*/
+// Post-condición: Imprime el texto pasado por parámetro. Cuando el texto no tiene líneas muestra el mensaje "Texto vacío" 
 TipoRetorno ImprimirTexto(Texto a);
 
-/*precondicion Debe haber lineas vacias en el texto y/o dentro de las lineas escritas debe haber una de las mismas
-que contenga menos de la cantidad maxima palabras establecidas.*/
-/*postcondicion Cuando la linea no llega a la cantidad de palabras maximas y si hay palabras en la siguiente linea sube todas las palabras que se 
-pueda una posicion hacia arriba, eliminando las lineas que queden completamente vacias y subiendo las lineas restantes una posicion hacia arriba*/
+/* Pre-condición: Debe haber líneas vacías en el texto y/o dentro de las líneas escritas debe haber una de las mismas
+    que contenga menos de la cantidad máxima de palabras por línea establecida.*/
+/* Post-condición: Cuando la línea no llega a la cantidad de palabras máximas y, si hay palabras en la siguiente línea, mueve las
+    palabras siguientes una posición hacia atrás hasta alcanzar el máximo de palabras , eliminando las líneas que queden 
+    completamente vacías y moviendo las líneas restantes una posición hacia atrás */
 TipoRetorno ComprimirTexto(Texto &a);
 
-/*precondicion El texto debe tener al menos 1 linea, la posicion linea pasada por paramentro tiene que ser mayor o igual a 1,
-la posicion de la linea debe ser menor o igual a la cantidad de lineas totales en el texto, la posicion palabra pasada
-por parametro debe ser menor o igual a la cantidad de palabras que haya en la linea*/
-/*postcondicion Ingresa una palabra en el texto seleccionando la linea y la posicion de la palabra en la linea, desplazando 
-las demas palabras en el caso de que haya palabras posteriores en la misma linea a a la posicion palabra a insertar y desplazando palabras 
-hacia la siguiente linea si es que alcanzo el maximo de palabras por linea */
+/* Pre-condición: El texto debe tener al menos 1 línea. La posición de línea pasada por parámentro tiene que ser mayor o igual a 1 y
+    menor o igual a la cantidad de líneas totales en el texto. La cantidad de palabras en línea debe ser menor al máximo de palabras en línea.
+    La posición de palabra pasada por parámetro, debe ser menor o igual a la cantidad de palabras que haya en la línea +1 */
+/* Post-condición: Ingresa una palabra en el texto, la posicion en línea y la posicion de la palabra en la línea pasados por parametro.
+    Desplazando las demas palabras en el caso de que haya palabras posteriores en la misma línea a la posicion palabra a insertar,
+    y desplazando palabras hacia la siguiente línea si alcanza el maximo de palabras por línea. */
 TipoRetorno InsertarPalabra(Texto &a, Posicion posicionLinea, Posicion posicionPalabra, Cadena palabra);
 
-/*precondicion El texto debe tener al menos 1 linea, la posicion linea pasada por paramentro tiene que ser mayor o igual a 1,
-la posicion de la linea debe ser menor o igual a la cantidad de lineas totales en el texto, la posicion palabra pasada
-por parametro debe ser menor o igual a la cantidad de palabras que haya en la linea*/  
-/*postcondicion Borra la palabra en la linea y posicion de la palabra pasadas por parametro,si hay palabras en la 
-siguiente linea sube todas las palabras que se pueda una posicion hacia arriba*/
+/* Pre-condición: El texto debe tener al menos 1 línea. La posición de línea pasada por parámentro tiene que ser mayor o igual a 1 y
+    menor o igual a la cantidad de líneas en el texto. La posición de palabra pasada por parámetro debe ser menor o igual
+    a la cantidad de palabras que haya en la línea*/  
+/* Post-condición: Borra la palabra en la línea y posición de la palabra pasadas por parámetro. Si hay palabras en las siguientes lineas,
+    las mueve una posición atrás. */
 TipoRetorno BorrarPalabra(Texto a, Posicion posicionLinea, Posicion posicionPalabra);
 
-/*precondicion El texto debe tener al menos 1 linea, la posicion linea pasada por paramentro tiene que ser mayor o igual a 1,
-la posicion de la linea debe ser menor o igual a la cantidad de lineas totales en el texto, la la palabra debe existir 
-en la linea  */
-/*postcondicion Borra todas las ocurrencias de la palabra palabraABorrar en la línea indicada, cada vez que borra una 
-palabra mueve todas las palabras de la línea que se encuentran a partir de la posición borrada una
-posición hacia delante, si llega al maximo de palabras por linea desplaza la palabra hacia la linea de abajo  .*/
+/* Pre-condición: El texto debe tener al menos 1 línea. La posición de línea pasada por paramentro tiene que ser mayor o igual a 1 y
+    menor o igual a la cantidad de líneas en el texto. La palabra debe existir en la línea. */
+/* Post-condición: Borra todas las ocurrencias de la palabra pasada por parámetro, en la línea pasada por parámetro.
+    Cada vez que borra una palabra, mueve todas las palabras posteriores una posición hacia atras. 
+    Si llega al máximo de palabras por línea, desplaza la palabra hacia la línea siguiente.*/
 TipoRetorno BorrarOcurrenciasPalabraEnLinea(Texto a, Posicion posicionLinea, Cadena palabraABorrar);
 
-/*precondicion El texto ya debera contener almenos una linea vacia, el numero de linea pasado como paramentro
-debe ser menor o igual a la cantidad de lineas totales del texo*/
-//postcondicion Imprime la linea pasada como paramentro junto con sus palabras si es que tiene alguna sino muestra la linea vacia.
+/* Pre-condición: El texto debe contener almenos una línea aunque ésta esté vacía. La posición de línea pasado por parámentro
+    debe ser menor o igual a la cantidad de líneas en el texo. */
+// Post-condición: Imprime la línea pasada por parámentro junto con sus palabras. En caso de no tener palabras, muestra la linea vacia.
 TipoRetorno ImprimirLinea(Texto a, Posicion posicionLinea);
 
+// Pre-condición: La palabra pasada por parámetro no debe de existir dentro del Diccionario.
+// Post-condición: Agrega la palabra ingresada por parámetro al Diccionario.
 TipoRetorno IngresarPalabraDiccionario(Diccionario &a, Cadena c);
 
+// Pre-condición: El diccionario no puede estar vacío y la palabra debe existir dentro del diccionario. 
+// Post-condición: Borra del Dicccionario la palabra ingresada por parámetro.
 TipoRetorno BorrarPalabraDiccionario(Diccionario &a, Cadena palabraABorrar);
 
+// Pos-condición: Imprime todas las palabras del dicionario, en orden alfabético.
 TipoRetorno ImprimirDiccionario(Diccionario d);
 
+
+// Post-condición: Imprime el texto pasado por parámetro, sin imprimir aquellas palabras que existan en el diccionario.
+//      En caso de estar vacío el texto, se imprime "Texto vacío".
 TipoRetorno ImprimirTextoIncorrecto(Texto a, Diccionario d);
+
 
 void comprobacion(TipoRetorno tr);
 
